@@ -1,0 +1,28 @@
+.search-form {
+  display: flex;
+  padding-block: 28px;
+  width: 100%;
+  gap: 0;
+
+  &__text {
+    color: rgb(31, 15, 61);
+    margin-right: -40px;
+    padding-inline: 8px 40px;
+    border: 3px solid rgb(94, 43, 189);
+    border-radius: 8px 0 0 8px;
+    box-shadow: 3px 3px 1px 1px rgba(0, 0, 255, 0.2);
+
+    &:hover,
+    &:focus-visible {
+      box-shadow: 3px 3px 1px 1px rgba(0, 0, 255, 0.2),
+        10px 0px 40px 20px rgba(0, 0, 255, 0.25);
+    }
+  }
+  &__submit {
+    padding-block: 10px;
+    padding-inline: 18px;
+    border: 3px solid rgb(94, 43, 189);
+    border-radius: 8px 8px 8px 50px;
+    box-shadow: 3px 3px 1px 1px rgba(0, 0, 255, 0.2);
+  }
+}
