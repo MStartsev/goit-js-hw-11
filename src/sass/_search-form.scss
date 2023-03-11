@@ -1,28 +1,55 @@
 .search-form {
   display: flex;
-  padding-block: 28px;
+  justify-content: center;
+  padding-block: 20px;
   width: 100%;
   gap: 0;
+  background: rgb(84, 81, 140);
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(79, 76, 126, 1) 4%,
+    rgba(84, 81, 140, 1) 12%,
+    rgba(113, 231, 255, 1) 96%,
+    rgba(2, 0, 36, 1) 100%
+  );
 
   &__text {
-    color: rgb(31, 15, 61);
+    min-width: 30%;
+    color: rgb(36, 7, 90);
     margin-right: -40px;
     padding-inline: 8px 40px;
-    border: 3px solid rgb(94, 43, 189);
+    border: 2px solid rgb(94, 43, 189);
     border-radius: 8px 0 0 8px;
     box-shadow: 3px 3px 1px 1px rgba(0, 0, 255, 0.2);
 
     &:hover,
-    &:focus-visible {
+    &:focus,
+    &:active {
+      border-color: rgb(94, 43, 189);
       box-shadow: 3px 3px 1px 1px rgba(0, 0, 255, 0.2),
-        10px 0px 40px 20px rgba(0, 0, 255, 0.25);
+        10px 0px 40px 20px rgba(0, 0, 255, 0.4);
+      outline: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    &::placeholder {
+      font-size: 14px;
+      line-height: res(1.25);
+      letter-spacing: 0.03em;
+      color: rgba(23, 3, 59, 0.4);
+    }
+
+    &:hover::placeholder,
+    &:focus::placeholder {
+      color: rgba(23, 3, 59, 0.6);
     }
   }
   &__submit {
     padding-block: 10px;
     padding-inline: 18px;
-    border: 3px solid rgb(94, 43, 189);
+    border: 2px solid rgb(94, 43, 189);
     border-radius: 8px 8px 8px 50px;
     box-shadow: 3px 3px 1px 1px rgba(0, 0, 255, 0.2);
+    cursor: pointer;
   }
 }
