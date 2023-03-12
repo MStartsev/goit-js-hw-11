@@ -5,3 +5,41 @@
 
 @import './search-form';
 @import './magnifying-glass';
+
+.gallery {
+  font-size: 12px;
+  margin: 0 auto;
+  max-width: 1600px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 15px;
+  justify-content: center;
+  background-color: #fafafa;
+}
+
+.photo-card {
+  background-color: #fff;
+  border: 1px solid;
+  border-radius: 4px;
+  box-shadow: 4px 2px 2px #999696;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gallery__link {
+  text-decoration: none;
+  color: inherit;
+}
