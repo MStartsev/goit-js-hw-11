@@ -9,11 +9,20 @@ export const galleryEl = document.querySelector('.gallery');
 let activePage = 1;
 export let pages = 1;
 
+const writeImages = str => {
+  if (!str) {
+    galleryEl.innerHTML = str;
+    return;
+  }
+};
+
 const getData = async (query, page) => {
   try {
     const answer = await fetchImages(query, page);
-    console.log(answer);
-    if (!answer) return;
+    if (!answer) {
+      writeImages('');
+      return;
+    }
 
     createImageCard(answer, page);
   } catch (error) {
@@ -23,9 +32,9 @@ const getData = async (query, page) => {
 
 const onSubmit = e => {
   e.preventDefault();
-
   const value = e.target.text.value.trim();
   e.target.text.value = '';
+  if (!value) return;
   console.log(value);
   activePage = 1;
 

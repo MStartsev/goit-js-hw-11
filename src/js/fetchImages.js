@@ -20,7 +20,9 @@ export const fetchImages = async (query = '', page = 1) => {
 
   try {
     const response = await axios.get(`${BASE_URL}?${searchParams}`);
+
     if (!response.data.total) throw new Error(response.statusText);
+
     if (page === 1)
       Notify.success(`Hooray! We found ${response.data.total} images for you.`);
     return response.data;
@@ -28,6 +30,7 @@ export const fetchImages = async (query = '', page = 1) => {
     Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.'
     );
-    return [];
+    console.log('qqq');
+    return false;
   }
 };
