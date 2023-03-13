@@ -7,7 +7,7 @@ const BASE_URL = 'https://pixabay.com/api/';
 
 export const per_page = 40;
 
-export const fetchImages = async (query = '', page = 1) => {
+export const fetchImages = async (query = '', page = 1, newQuery) => {
   const searchParams = new URLSearchParams({
     key: API_KEY,
     q: query,
@@ -23,7 +23,7 @@ export const fetchImages = async (query = '', page = 1) => {
 
     if (!response.data.total) throw new Error(response.statusText);
 
-    if (page === 1)
+    if (newQuery)
       Notify.success(`Hooray! We found ${response.data.total} images for you.`);
     return response.data;
   } catch (e) {

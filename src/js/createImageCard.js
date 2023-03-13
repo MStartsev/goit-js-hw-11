@@ -1,29 +1,32 @@
-import SimpleLightbox from 'simplelightbox';
-import { galleryEl, pages } from '../';
-import { fetchImages, per_page } from './fetchImages';
+import { infiniteScrolling } from './infiniteScrolling';
+import { per_page } from './fetchImages';
+import { writeImages } from './writeImages';
 
-import 'simplelightbox/dist/simple-lightbox.min.css';
+export let totalPages = 1;
 
-let previousPage = 1;
-
-let lightbox = new SimpleLightbox('.gallery__item', {
-  captionDelay: 250,
-  fadeSpeed: 250,
-  scrollZoom: false,
-});
-
-export const createImageCard = (answer, page) => {
-  if (page === 1) pages = Math.ceil(answer.totalHits / per_page);
+export const createImageCard = (answer, page, newQuery) => {
+  if (newQuery) {
+    totalPages = Math.ceil(answer.totalHits / per_page);
+  }
 
   const hits = answer.hits;
 
-  const createGallery = ({ gallery, galleryName }) =>
-    (gallery.innerHTML = hits.reduce(
-      (
-        arr,
-        { webformatURL, largeImageURL, tags, likes, views, comments, downloads }
-      ) =>
-        `${arr}
+  const createGallery = ({ hits, galleryName, newQuery }) =>
+    writeImages(
+      hits.reduce(
+        (
+          arr,
+          {
+            webformatURL,
+            largeImageURL,
+            tags,
+            likes,
+            views,
+            comments,
+            downloads,
+          }
+        ) =>
+          `${arr}
         <a class='${galleryName}__item ${galleryName}__link' href='${largeImageURL}'>
             <img class='${galleryName}__image' src='${webformatURL}' alt='${tags}' loading="lazy"  width='240px'>
              <div class="info">
@@ -43,9 +46,12 @@ export const createImageCard = (answer, page) => {
       </div>
         </a>
     `,
-      ''
-    ));
+        ''
+      ),
+      newQuery
+    );
 
-  createGallery({ gallery: galleryEl, galleryName: 'gallery' });
-  lightbox.refresh();
+  createGallery({ hits: hits, galleryName: 'gallery', newQuery: newQuery });
+
+  infiniteScrolling('.gallery__item');
 };
