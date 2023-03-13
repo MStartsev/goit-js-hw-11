@@ -8,6 +8,8 @@ import { per_page } from './fetchImages';
 export let activePage = 1;
 export const reActivePage = () => (activePage = 1);
 
+export let handleScroll;
+
 export const infiniteScrolling = element => {
   if (totalPages < 2) return;
 
@@ -25,14 +27,10 @@ export const infiniteScrolling = element => {
     return lastItemOffsetTop - scrollTop <= windowHeight + itemHeight * 2;
   }
 
-  function addItems() {
-    console.log(totalPages, activePage);
-    if (activePage >= totalPages) activePage = 1;
-    getData(query, activePage);
-  }
   const addNext = () => {
     if (isLastItemVisible()) {
       activePage++;
+
       window.removeEventListener('scroll', handleScroll);
       addItems();
 
@@ -40,10 +38,15 @@ export const infiniteScrolling = element => {
     }
   };
 
-  const handleScroll = throttle(addNext, 1000);
-
+  handleScroll = throttle(addNext, 1000);
   window.addEventListener('scroll', handleScroll);
 };
+
+function addItems() {
+  console.log(totalPages, activePage);
+  if (activePage >= totalPages) activePage = 1;
+  getData(query, activePage);
+}
 
 function removeFirst40ElementsFromDOM() {
   const listItems = document.querySelectorAll('.gallery__item');

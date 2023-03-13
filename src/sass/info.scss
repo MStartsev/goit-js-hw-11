@@ -1,0 +1,14 @@
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #e6e6e6;
+
+  &__item {
+    display: inherit;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

@@ -30,16 +30,16 @@ export const createImageCard = (answer, page, newQuery) => {
         <a class='${galleryName}__item ${galleryName}__link' href='${largeImageURL}'>
             <img class='${galleryName}__image' src='${webformatURL}' alt='${tags}' loading="lazy"  width='240px'>
              <div class="info">
-          <p class="info-item">
+          <p class="info__item">
             <b>Likes<br>${likes}</br></b>
           </p>
-          <p class="info-item">
+          <p class="info__item">
             <b>Views<br>${views}</br></b>
           </p>
-          <p class="info-item">
+          <p class="info__item">
             <b>Comments<br>${comments}</br></b>
           </p>
-          <p class="info-item">
+          <p class="info__item">
             <b>Downloads<br>${downloads}</br></b>
           </p>
         </div>

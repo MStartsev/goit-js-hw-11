@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Notify } from 'notiflix';
 import 'notiflix/dist/notiflix-3.2.6.min.css';
+import { handleScroll } from './infiniteScrolling';
 
 const API_KEY = '34327066-9eab2ae5edaa4607329818102';
 const BASE_URL = 'https://pixabay.com/api/';
@@ -21,10 +22,13 @@ export const fetchImages = async (query = '', page = 1, newQuery) => {
   try {
     const response = await axios.get(`${BASE_URL}?${searchParams}`);
 
+    window.removeEventListener('scroll', handleScroll);
+
     if (!response.data.total) throw new Error(response.statusText);
 
-    if (newQuery)
+    if (newQuery) {
       Notify.success(`Hooray! We found ${response.data.total} images for you.`);
+    }
     return response.data;
   } catch (e) {
     Notify.failure(
