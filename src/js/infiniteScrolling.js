@@ -43,7 +43,6 @@ export const infiniteScrolling = element => {
 };
 
 function addItems() {
-  console.log(totalPages, activePage);
   if (activePage >= totalPages) activePage = 1;
   getData(query, activePage);
 }
